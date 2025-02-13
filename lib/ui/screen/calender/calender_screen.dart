@@ -32,6 +32,10 @@ class _CalenderScreenState extends State<CalenderScreen> {
         return isSameDay(_selectedDay, day);
       },
 
+      onPageChanged: (focusedDay) {
+        _focusedDay = focusedDay;
+      },
+
       calendarStyle: const CalendarStyle(
         selectedDecoration: BoxDecoration(
           color: Colors.green,
