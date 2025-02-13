@@ -42,6 +42,16 @@ class _CalenderScreenState extends State<CalenderScreen> {
           shape: BoxShape.circle,
         ),
       ),
+
+      // 曜日を日本語表記
+      daysOfWeekStyle: const DaysOfWeekStyle(
+        weekendStyle: TextStyle(color: Colors.red),
+      ),
+
+      headerStyle: const HeaderStyle(
+        formatButtonVisible: false,
+        titleCentered: true, // タイトルを中央寄せ
+      ),
     );
   }
 }
