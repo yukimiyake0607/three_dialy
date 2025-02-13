@@ -41,6 +41,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
           color: Colors.green,
           shape: BoxShape.circle,
         ),
+        weekendTextStyle: TextStyle(color: Colors.red),
       ),
 
       // 曜日を日本語表記
@@ -52,6 +53,8 @@ class _CalenderScreenState extends State<CalenderScreen> {
         formatButtonVisible: false,
         titleCentered: true, // タイトルを中央寄せ
       ),
+
+      locale: 'ja_JP',
     );
   }
 }
