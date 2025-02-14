@@ -1,6 +1,7 @@
 import 'package:mindow/domain/models/diary_entry.dart';
 import 'package:mindow/domain/models/emotion.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'diary_notifier.g.dart';
 
@@ -17,7 +18,7 @@ class DiaryNotifier extends _$DiaryNotifier {
     String diary3,
   ) {
     final diaryEntry = DiaryEntry(
-      id: '0',
+      id: const Uuid().v4(),
       date: DateTime.now(),
       textList: [
         diary1,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:mindow/viewmodels/providers/diary_notifier.dart';
 
 class DiaryScreen extends ConsumerStatefulWidget {
@@ -13,6 +14,14 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
   final TextEditingController _controller3 = TextEditingController();
+  late DateTime _selectedDate;
+  final DateFormat _dateFormat = DateFormat('yyyy年MM月dd日', 'ja_JP');
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedDate = DateTime.now();
+  }
 
   @override
   void dispose() {
@@ -20,6 +29,12 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
     _controller2.dispose();
     _controller3.dispose();
     super.dispose();
+  }
+
+  void _changeDate(int days) {
+    setState(() {
+      _selectedDate = _selectedDate.add(Duration(days: days));
+    });
   }
 
   @override
@@ -31,6 +46,30 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
         children: [
           const Text('実装可能か調査中'),
           const Text('昨日の出来事表示'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () => _changeDate(-1),
+                  icon: const Icon(Icons.arrow_left),
+                ),
+                Text(
+                  _dateFormat.format(_selectedDate),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => _changeDate(1),
+                  icon: const Icon(Icons.arrow_right),
+                ),
+              ],
+            ),
+          ),
           TextField(
             controller: _controller1,
           ),
