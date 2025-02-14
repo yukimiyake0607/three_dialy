@@ -16,6 +16,7 @@ class DiaryNotifier extends _$DiaryNotifier {
     String diary1,
     String diary2,
     String diary3,
+    Emotion emotion
   ) {
     final diaryEntry = DiaryEntry(
       id: const Uuid().v4(),
@@ -25,7 +26,7 @@ class DiaryNotifier extends _$DiaryNotifier {
         diary2,
         diary3,
       ],
-      emotion: Emotion.brave,
+      emotion: emotion,
       createdAt: DateTime.now(),
     );
 
