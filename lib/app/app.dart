@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mindow/ui/screen/analysis/analysis_screen.dart';
-import 'package:mindow/ui/screen/calender/calender_screen.dart';
-import 'package:mindow/ui/screen/diary/diary_screen.dart';
-import 'package:mindow/ui/screen/setting_option/setting_screen.dart';
+import 'package:mindow/views/screen/analysis/analysis_screen.dart';
+import 'package:mindow/views/screen/calender/calender_screen.dart';
+import 'package:mindow/views/screen/diary/diary_screen.dart';
+import 'package:mindow/views/screen/setting_option/setting_screen.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
