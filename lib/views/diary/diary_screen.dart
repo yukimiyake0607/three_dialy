@@ -79,6 +79,7 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
           TextField(
             controller: _controller3,
           ),
+          // ここにEmotion
           ElevatedButton(
             onPressed: () {
               final asyncDiaryListNotifier =
