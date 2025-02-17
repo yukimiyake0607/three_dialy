@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778337091643",
+    "project_id": "mindow-d931f",
+    "storage_bucket": "mindow-d931f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778337091643:android:62612c823e9c1072a65c1e",
+        "android_client_info": {
+          "package_name": "com.example.mindow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt-MacyKAAS3nyhuTduvYF9nbjzCbOB5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
