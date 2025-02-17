@@ -1,48 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mindow/viewmodels/calender/calender_day_provider.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-// focusedDay
-final focusedDayProvider =
-    StateNotifierProvider<FocusedDayNotifier, DateTime>((ref) {
-  return FocusedDayNotifier();
-});
-
-class FocusedDayNotifier extends StateNotifier<DateTime> {
-  FocusedDayNotifier([DateTime? initialDate])
-      : super(initialDate?.copyWith(
-                hour: 0,
-                minute: 0,
-                second: 0,
-                millisecond: 0,
-                microsecond: 0) ??
-            DateTime.now().copyWith(
-                hour: 0, minute: 0, second: 0, millisecond: 0, microsecond: 0));
-
-  void updateFocusedDay(DateTime? focusedDay) {
-    if (focusedDay == null) return;
-    state = focusedDay.copyWith(
-        hour: 0, minute: 0, second: 0, millisecond: 0, microsecond: 0);
-  }
-}
-
-// selectedDay
-final selectedDayProvider =
-    StateNotifierProvider<SelectedDayNotifier, DateTime?>((ref) {
-  return SelectedDayNotifier();
-});
-
-class SelectedDayNotifier extends StateNotifier<DateTime?> {
-  SelectedDayNotifier() : super(null);
-
-  void onDaySelected(DateTime? selectedDay) {
-    if (selectedDay == null) return;
-    state = selectedDay.copyWith(
-        hour: 0, minute: 0, second: 0, millisecond: 0, microsecond: 0);
-  }
-
-  void clearSelection() => state = null;
-}
 
 class DiaryCalender extends ConsumerWidget {
   const DiaryCalender({super.key});
@@ -58,8 +17,8 @@ class DiaryCalender extends ConsumerWidget {
 
       // 日付が選択された時の処理
       onDaySelected: (selectedDay, focusedDay) {
-        ref.read(selectedDayProvider.notifier).onDaySelected(selectedDay);
-        ref.read(focusedDayProvider.notifier).updateFocusedDay(focusedDay);
+        ref.read(selectedDayProvider.notifier).updateDay(selectedDay);
+        ref.read(focusedDayProvider.notifier).updateDay(focusedDay);
       },
 
       // 選択された日付に色を塗るか判定
@@ -70,7 +29,7 @@ class DiaryCalender extends ConsumerWidget {
 
       onPageChanged: (focusedDay) {
         // StateNotifierのメソッドを使用して更新
-        ref.read(focusedDayProvider.notifier).updateFocusedDay(focusedDay);
+        ref.read(focusedDayProvider.notifier).updateDay(focusedDay);
       },
 
       calendarStyle: const CalendarStyle(
