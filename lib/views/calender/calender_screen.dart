@@ -14,7 +14,22 @@ class _CalenderScreenState extends State<CalenderScreen> {
     return const Column(
       children: [
         DiaryCalender(),
-        Text('ここに表示'),
+        SizedBox(height: 10),
+        Column(
+          children: [
+            Text('日記'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('日付'),
+                Text('感情'),
+              ],
+            ),
+            Text('日記1'),
+            Text('日記2'),
+            Text('日記3'),
+          ],
+        ),
       ],
     );
   }
