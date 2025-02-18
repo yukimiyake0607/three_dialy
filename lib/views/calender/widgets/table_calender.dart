@@ -12,6 +12,7 @@ class DiaryCalender extends ConsumerWidget {
     final calenderFocusedDay = ref.watch(focusedDayProvider);
     final calenderSelectedDay = ref.watch(selectedDayProvider);
     final diaryAsync = ref.watch(diaryNotifierProvider);
+
     return diaryAsync.when(
       data: (diaries) {
         return TableCalendar(
@@ -21,13 +22,29 @@ class DiaryCalender extends ConsumerWidget {
 
           // 日記がある日を取得
           eventLoader: (day) {
-            return diaries.where((diary) => diary.date == day).toList();
+            return diaries
+                .where((diary) => isSameDay(diary.date, day))
+                .toList();
           },
 
           // 日付が選択された時の処理
-          onDaySelected: (selectedDay, focusedDay) {
-            ref.read(selectedDayProvider.notifier).updateDay(selectedDay);
-            ref.read(focusedDayProvider.notifier).updateDay(focusedDay);
+          onDaySelected: (selected, focused) {
+            final normalizedSelectedDate = DateTime.utc(
+              selected.year,
+              selected.month,
+              selected.day,
+            );
+            final normalizedFocusedDate = DateTime.utc(
+              focused.year,
+              focused.month,
+              focused.day,
+            );
+            ref
+                .read(selectedDayProvider.notifier)
+                .updateDay(normalizedSelectedDate);
+            ref
+                .read(focusedDayProvider.notifier)
+                .updateDay(normalizedFocusedDate);
           },
 
           // 選択された日付に色を塗るか判定

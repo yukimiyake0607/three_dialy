@@ -6,7 +6,7 @@ part of 'calender_day_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$selectedDayHash() => r'3818f5f69219aa1ec9368a2a22549a00adcf4984';
+String _$selectedDayHash() => r'3ee6c8b800e696eec87ba6290c6621602bcb88f4';
 
 /// See also [SelectedDay].
 @ProviderFor(SelectedDay)
@@ -21,7 +21,7 @@ final selectedDayProvider =
 );
 
 typedef _$SelectedDay = AutoDisposeNotifier<DateTime?>;
-String _$focusedDayHash() => r'd495a62087436090f7f641ebd74998a34e0c3d22';
+String _$focusedDayHash() => r'bb7afec0fa6adcadbe452c90eaf420f5b6339c26';
 
 /// See also [FocusedDay].
 @ProviderFor(FocusedDay)

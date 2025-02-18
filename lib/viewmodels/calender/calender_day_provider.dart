@@ -10,7 +10,12 @@ class SelectedDay extends _$SelectedDay {
   }
 
   void updateDay(DateTime selectedDay) {
-    state = selectedDay;
+    final normalizedDate = DateTime.utc(
+      selectedDay.year,
+      selectedDay.month,
+      selectedDay.day,
+    );
+    state = normalizedDate;
   }
 }
 
@@ -22,6 +27,12 @@ class FocusedDay extends _$FocusedDay {
   }
 
   void updateDay(DateTime focusedDay) {
-    state = focusedDay;
+    final normalizedDate = DateTime.utc(
+      focusedDay.year,
+      focusedDay.month,
+      focusedDay.day,
+    );
+
+    state = normalizedDate;
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 // 外部に日記の日付を提供するため
-final selectedDateProvider = StateProvider<DateTime>((ref) {
+final diaryDayProvider = StateProvider<DateTime>((ref) {
   return DateTime.now();
 });
 
@@ -12,11 +12,11 @@ class DiaryDate extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedDate = ref.watch(selectedDateProvider);
+    final selectedDate = ref.watch(diaryDayProvider);
     final dateFormat = DateFormat('yyyy年MM月dd日', 'ja_JP');
 
     void changeDate(int days) {
-      ref.read(selectedDateProvider.notifier).state =
+      ref.read(diaryDayProvider.notifier).state =
           selectedDate.add(Duration(days: days));
     }
 
