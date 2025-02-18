@@ -45,11 +45,13 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
               final asyncDiaryListNotifier =
                   ref.read(diaryNotifierProvider.notifier);
               final emotion = ref.watch(selectedEmotionProvider);
+              final selectedDate = ref.watch(selectedDateProvider);
               asyncDiaryListNotifier.addDiary(
                 _controller1.text,
                 _controller2.text,
                 _controller3.text,
                 emotion!,
+                selectedDate,
               );
               _controller1.clear();
               _controller2.clear();

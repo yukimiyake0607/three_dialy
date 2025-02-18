@@ -16,11 +16,12 @@ class DiaryNotifier extends _$DiaryNotifier {
     String diary1,
     String diary2,
     String diary3,
-    Emotion emotion
+    Emotion emotion,
+    DateTime date,
   ) {
     final diaryEntry = DiaryEntry(
       id: const Uuid().v4(),
-      date: DateTime.now(),
+      date: date,
       textList: [
         diary1,
         diary2,
