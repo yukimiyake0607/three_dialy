@@ -45,7 +45,7 @@ class DiaryCalender extends ConsumerWidget {
           // 各日付のスタイルをカスタマイズ
           calendarBuilders: CalendarBuilders(
             // 通常の日付のデザインを設定
-            defaultBuilder: (context, day, focusedDay) {
+            defaultBuilder: (_, day, __) {
               // 日記がある日付かチェック
               final hasDiary =
                   diaries.any((diary) => isSameDay(diary.date, day));
