@@ -19,7 +19,7 @@ class DiaryCalender extends ConsumerWidget {
           firstDay: DateTime.utc(2025, 1, 1),
           lastDay: DateTime.utc(2099, 12, 31),
 
-          // 日記がある日のマーカー設定
+          // 日記がある日を取得
           eventLoader: (day) {
             return diaries.where((diary) => diary.date == day).toList();
           },
@@ -36,13 +36,15 @@ class DiaryCalender extends ConsumerWidget {
                 isSameDay(calenderSelectedDay, day);
           },
 
+          // 表示月が変更した場合
           onPageChanged: (focusedDay) {
             // StateNotifierのメソッドを使用して更新
             ref.read(focusedDayProvider.notifier).updateDay(focusedDay);
           },
 
-                    // 各日付のスタイルをカスタマイズ
+          // 各日付のスタイルをカスタマイズ
           calendarBuilders: CalendarBuilders(
+            // 通常の日付のデザインを設定
             defaultBuilder: (context, day, focusedDay) {
               // 日記がある日付かチェック
               final hasDiary =
@@ -68,6 +70,7 @@ class DiaryCalender extends ConsumerWidget {
               }
               return null; // デフォルトのスタイルを使用
             },
+            // todayBuilder（今日の日付のスタイル）も今後付与
           ),
 
           calendarStyle: const CalendarStyle(
