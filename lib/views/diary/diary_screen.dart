@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mindow/viewmodels/providers/diary_notifier.dart';
+import 'package:mindow/viewmodels/diary/diary_notifier.dart';
 import 'package:mindow/views/diary/widgets/diary_date.dart';
 import 'package:mindow/views/diary/widgets/emotion_grid.dart';
 
@@ -45,11 +45,13 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
               final asyncDiaryListNotifier =
                   ref.read(diaryNotifierProvider.notifier);
               final emotion = ref.watch(selectedEmotionProvider);
+              final selectedDate = ref.watch(diaryDayProvider);
               asyncDiaryListNotifier.addDiary(
                 _controller1.text,
                 _controller2.text,
                 _controller3.text,
                 emotion!,
+                selectedDate,
               );
               _controller1.clear();
               _controller2.clear();

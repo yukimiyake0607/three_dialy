@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class DiaryDate extends StatefulWidget {
+// 外部に日記の日付を提供するため
+final diaryDayProvider = StateProvider<DateTime>((ref) {
+  return DateTime.now();
+});
+
+class DiaryDate extends ConsumerWidget {
   const DiaryDate({super.key});
 
   @override
-  State<DiaryDate> createState() => _DiaryDateState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedDate = ref.watch(diaryDayProvider);
+    final dateFormat = DateFormat('yyyy年MM月dd日', 'ja_JP');
 
-class _DiaryDateState extends State<DiaryDate> {
-  late DateTime _selectedDate;
-  final DateFormat _dateFormat = DateFormat('yyyy年MM月dd日', 'ja_JP');
+    void changeDate(int days) {
+      ref.read(diaryDayProvider.notifier).state =
+          selectedDate.add(Duration(days: days));
+    }
 
-  @override
-  void initState() {
-    super.initState();
-    _selectedDate = DateTime.now();
-  }
-
-  void _changeDate(int days) {
-    setState(() {
-      _selectedDate = _selectedDate.add(Duration(days: days));
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -33,18 +27,18 @@ class _DiaryDateState extends State<DiaryDate> {
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            onPressed: () => _changeDate(-1),
+            onPressed: () => changeDate(-1),
             icon: const Icon(Icons.arrow_left),
           ),
           Text(
-            _dateFormat.format(_selectedDate),
+            dateFormat.format(selectedDate),
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
           IconButton(
-            onPressed: () => _changeDate(1),
+            onPressed: () => changeDate(1),
             icon: const Icon(Icons.arrow_right),
           ),
         ],
